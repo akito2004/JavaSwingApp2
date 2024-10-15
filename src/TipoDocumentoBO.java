@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.paul.pe.cnegocio;
+
+
 import com.paul.pe.cdatosDao.TipoDocumentosDao;
 import com.paul.pe.cmodelos.TipoDocumento;
  
@@ -10,7 +8,6 @@ import com.paul.pe.cmodelos.TipoDocumento;
 import com.paul.pe.db.Conexion;
 import java.sql.SQLException;
 import java.sql.Connection;
-
 public class TipoDocumentoBO {
     private String mensaje;
     TipoDocumentosDao tdd = new TipoDocumentosDao();
@@ -28,5 +25,8 @@ public class TipoDocumentoBO {
         return mensaje;
     }
 }
+   public void listarTipoDocumento(jTable table){
 
+       
 
+}

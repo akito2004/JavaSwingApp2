@@ -5,9 +5,13 @@
 package com.paul.pe.cdatosDao;
 
 import com.paul.pe.cmodelos.TipoDocumento;
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -95,7 +99,48 @@ public class TipoDocumentosDao {
         }
         return mensaje;
     }
+//cuarto metodo  - listar tipo dcumento
+            public void listarTipoDocumento(Connection conn, JTable table){
+                DefaultTableModel model;
+                Statement Statement = null;
+                resultedSet resultedSet = null;
+                
+                String[] columnas("ID","NOMBRE","SIGLA","ESTADO","ORDEN","FECHAACTUALIZACION");
+                model = new DefaultTableModel(null, columnas);
+                
+                String sql ="SELEC * FROM TIPO DOCUEMENTO";
+                String[]datosTP =new String[6];
+                   try {
+                    Statement = (Statement) conn.createStatement();
+                    resultedSet= Statement.executeQuery(sql);
+                    while(resultedSet.next()){
+                        TipoDocumento td = new TipoDocumento();
+                        td.setIdTipoDocumento(resultSet.getInt("ID_TIPO_DOCUMENTO"));
+                        td.setNombre(resultSet.getString("NOMBRE"));
+                        td.setEstado(resultSet.getString("ESTADO");
+                        td.setOrden(resultSet.getInt("ORDEN");
+                        td.setSigla(resultSet.getString("SIGLA");
+                        td.setFechaActualiza(resultSet.getString("FECHA_REGISTRO");
+                        
+                        
+                        datosTP[0] =td.getIdTipoDocumento()+"";
+                        datosTP[1] =td.getNombre()+"";
+                        datosTP[2] =""+td.getSigla();
+                        datosTP[3] =td.getEstado()+"";
+                        datosTP[4] =td.getOrden()+"";
+                        datosTP[5] =td.getFechaActualiza()+"";
+                        
+                        model.addRow(datosTP);
+                    }
+                    table.setModel(model);
+                } catch (Exception e) {
+                       JOptionPane.showMessageDialog(null, mensaje, sql, 0);
+                       System.out.println(e.getMessage());
 
+                }
+                   
+            }
 }
+//
 
 
